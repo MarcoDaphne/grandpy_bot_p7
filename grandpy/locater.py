@@ -17,8 +17,9 @@ class Locater:
 
     def __init__(self, keyword):
         self.keyword = keyword
-        self.address = str()
-        self.location = str()
+        self.address = None
+        self.latitude = None
+        self.longitude = None
 
     def search_place(self):
         """docstring"""
@@ -29,29 +30,49 @@ class Locater:
             'key': key
         }
         response = requests.get(url_search, params=parameters)
-        print(response.json()['candidates'][0].get('place_id'))
-        return response.json()
+        return response.json()['candidates'][0].get('place_id')
 
     def get_place_details(self):
         """docstring"""
-        id = self.search_place()['candidates'][0].get('place_id')
+        place_id = self.search_place()
         parameters = {
             'key': key,
-            'place_id': id,
+            'place_id': place_id,
             'language': 'fr',
             'fields': fields
         }
         response = requests.get(url_details, params=parameters)
-        print(response.json()['result'].get('formatted_address'))
-        print(response.json()['result'].get('geometry').get('location'))
-        return response.json()
+        return response.json()['result']
+
+    def get_address(self):
+        self.address = self.get_place_details().get('formatted_address')
+        return self.address
+
+    def get_latitude(self):
+        location = self.get_place_details()['geometry'].get('location')
+        self.latitude = location.get('lat')
+        return self.latitude
+
+    def get_longitude(self):
+        location = self.get_place_details()['geometry'].get('location')
+        self.longitude = location.get('lng')
+        return self.longitude
+
+    def show_result(self):
+        print("adresse: {}".format(self.address))
+        print("latitude: {}".format(self.latitude))
+        print("longitude: {}".format(self.longitude))
+        print(self.search_place())
 
 
 if __name__ == "__main__":
     question_parse = pars.Parser()
-    question_parse.set_question("Où puis-je trouver un mèdecin à LONGJUMEAU ?")
+    question_parse.set_question("Bonjour GrandPY, où se trouve la Montagne pelée ?")
     question_parse.remove_accents()
     question_parse.remove_punctuations()
     question_parse.remove_current_word()
     place_locate = Locater(question_parse)
-    place_locate.get_place_details()
+    place_locate.get_address()
+    place_locate.get_latitude()
+    place_locate.get_longitude()
+    place_locate.show_result()

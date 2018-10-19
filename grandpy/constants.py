@@ -15,14 +15,14 @@ accents = {
 }
 
 common_words = [
-    'a', 'c', 'l', 't', 'y',
+    'a', 'c', 'l', 's', 't', 'y',
     'ou', 'se', 'qu', 'est',
     'plus', 'puis', 'coin',
     'moi', 'je', 'tu', 'il', 'elle',
     'nous', 'vous', 'ils', 'elles',
     'un', 'une', 'de', 'du', 'des',
-    'la', 'le', 'les', 'salut', 'slt',
-    'dans', 'en', 'proche', 'pres',
+    'la', 'le', 'les', 'salut', 'slt', 'bonjour',
+    'dans', 'en', 'proche', 'pres', 'plait',
     'trouve', 'trouver',
     'cherche', 'chercher',
     'localise', 'localiser',
