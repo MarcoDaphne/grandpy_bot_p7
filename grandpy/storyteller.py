@@ -5,38 +5,35 @@
 
 from mediawiki import MediaWiki
 
-import grandpy.parser as pars
-import grandpy.locater as pos
+import random
 
 
-class Storyteller:
+class StoryTeller:
     """docstring"""
-    def __init__(self, keyword, position):
-        self.keyword = keyword
-        self.position = position
-        self.wikipedia = MediaWiki()
+    def __init__(self):
+        self.wikipedia = MediaWiki(lang=u'fr')
+        self._response = None
+        self.summary = None
 
-    def search_position_data(self):
+    def set_position(self, lat, lng):
         """docstring"""
-        return self.wikipedia.geosearch(
-            latitude=self.position.latitude,
-            longitude=self.position.longitude
+        self._response = self.wikipedia.geosearch(
+            latitude = lat,
+            longitude = lng
         )
 
-    def show_data(self):
-        search = self.search_position_data()
-        print(search)
+    def choice_summary(self):
+        """docstring"""
+        return random.choice(self._response)
+    
+    def show_summary(self):
+        """docstring"""
+        self.summary = self.wikipedia.page(self.choice_summary())
+        self.summary = self.summary.summary
+        print(self.summary)
 
 
 if __name__ == "__main__":
-    question = pars.Parser()
-    question.set_question("Où puis-je trouver une pizzeria à LONGJUMEAU ?")
-    question.remove_accents()
-    question.remove_punctuations()
-    question.remove_current_word()
-    position = pos.Locater(question)
-    position.get_latitude()
-    position.get_longitude()
-    story = Storyteller(question, position)
-    story.search_position_data()
-    story.show_data()
+    story = StoryTeller()
+    story.set_position(40.6892494, -74.04450039999999)
+    story.show_summary()

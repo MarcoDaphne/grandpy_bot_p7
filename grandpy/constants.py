@@ -1,10 +1,4 @@
-fields = "formatted_address,geometry"
-
-key = "AIzaSyDK03p2QhdHZlDKWbfD0Ehk5NQhf_Gq8Yc"
-
-url_search = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?"
-
-url_details = "https://maps.googleapis.com/maps/api/place/details/json?"
+gmaps_key = "AIzaSyBI4o1crgdN2_X-BJpECpSpcvbzVlHf74s"
 
 accents = {
     'a': ['à', 'ã', 'â', 'ä'],

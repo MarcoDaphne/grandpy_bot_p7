@@ -42,7 +42,7 @@ class Parser:
 
 if __name__ == '__main__':
     question_interpreted = Parser()
-    question_interpreted.set_question("""Où est le truffaut le plus proche ?""")
+    question_interpreted.set_question("""Bonjour GrandPY, où se trouve le manneken-pis ?""")
     question_interpreted.remove_accents()
     question_interpreted.remove_punctuations()
     question_interpreted.remove_current_word()
