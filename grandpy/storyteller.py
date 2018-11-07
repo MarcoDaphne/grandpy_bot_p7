@@ -13,27 +13,35 @@ class StoryTeller:
     def __init__(self):
         self.wikipedia = MediaWiki(lang=u'fr')
         self._response = None
-        self.summary = None
+        self._url = None
+        self._summary = None
 
-    def set_position(self, lat, lng):
+    def set_position(self, latitude, longitude):
         """docstring"""
-        self._response = self.wikipedia.geosearch(
-            latitude = lat,
-            longitude = lng
-        )
+        if latitude == None and longitude == None:
+            self._response = []
+        else:
+            self._response = self.wikipedia.geosearch(
+                latitude=latitude,
+                longitude=longitude
+            )
 
-    def choice_summary(self):
+    def choice_title(self):
         """docstring"""
         return random.choice(self._response)
     
-    def show_summary(self):
+    def get_informations(self):
         """docstring"""
-        self.summary = self.wikipedia.page(self.choice_summary())
-        self.summary = self.summary.summary
-        print(self.summary)
+        if self._response == []:
+            return [self._summary, self._url]
+        else:
+            page = self.wikipedia.page(self.choice_title())
+            self._summary = page.summary
+            self._url = page.url
+            return [self._summary, self._url]
 
 
 if __name__ == "__main__":
     story = StoryTeller()
-    story.set_position(40.6892494, -74.04450039999999)
-    story.show_summary()
+    story.set_position(14.7547222, -60.9055556)
+    story.get_informations()
