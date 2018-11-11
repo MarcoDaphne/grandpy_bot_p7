@@ -4,7 +4,6 @@
 """docstring"""
 
 import pytest
-from mock import Mock
 
 import grandpy.locater as loc
 
