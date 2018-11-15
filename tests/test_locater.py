@@ -28,7 +28,10 @@ def test_set_keyword(monkeypatch):
     def fake_geocode(self, question):
         return data_list
     
-    monkeypatch.setattr("grandpy.locater.googlemaps.Client.geocode", fake_geocode)
+    monkeypatch.setattr(
+        "grandpy.locater.googlemaps.Client.geocode",
+        fake_geocode
+    )
     locater.set_keyword(keyword)
     assert locater._keyword == keyword
 
@@ -39,7 +42,10 @@ def test_get_address(monkeypatch):
     def fake_geocode(self, question):
         return data_list
     
-    monkeypatch.setattr("grandpy.locater.googlemaps.Client.geocode", fake_geocode)
+    monkeypatch.setattr(
+        "grandpy.locater.googlemaps.Client.geocode",
+        fake_geocode
+    )
     locater.set_keyword(keyword)
     assert locater.get_address() == (
         'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France'
@@ -52,7 +58,10 @@ def test_get_location(monkeypatch):
     def fake_geocode(self, question):
         return data_list
     
-    monkeypatch.setattr("grandpy.locater.googlemaps.Client.geocode", fake_geocode)
+    monkeypatch.setattr(
+        "grandpy.locater.googlemaps.Client.geocode",
+        fake_geocode
+    )
     locater.set_keyword(keyword)
     assert locater.get_location() == [
         48.85837009999999,
@@ -66,7 +75,10 @@ def test_get_address_failed(monkeypatch):
     def fake_geocode(self, question):
         return data_list_empty
     
-    monkeypatch.setattr("grandpy.locater.googlemaps.Client.geocode", fake_geocode)
+    monkeypatch.setattr(
+        "grandpy.locater.googlemaps.Client.geocode",
+        fake_geocode
+    )
     locater.set_keyword(keyword)
     assert locater.get_address() == None
 
@@ -77,6 +89,9 @@ def test_get_location_failed(monkeypatch):
     def fake_geocode(self, question):
         return data_list_empty
     
-    monkeypatch.setattr("grandpy.locater.googlemaps.Client.geocode", fake_geocode)
+    monkeypatch.setattr(
+        "grandpy.locater.googlemaps.Client.geocode",
+        fake_geocode
+    )
     locater.set_keyword(keyword)
     assert locater.get_location() == [None, None]

@@ -29,7 +29,7 @@ class Answer:
                 locater.get_address(),
                 locater.get_location()
             ),
-            'response': {
+            'data': {
                 'address': locater.get_address(),
                 'location': locater.get_location()
             }
@@ -40,12 +40,11 @@ class Answer:
             )
         self._answer['StoryTeller'] = {
             'say': manage.check_storyteller(storyteller.get_informations()),
-            'response': {
+            'data': {
                 'summary': storyteller.get_informations()[0],
                 'url': storyteller.get_informations()[1]
             }
         }
-        print(self._answer)
         return self._answer
 
 

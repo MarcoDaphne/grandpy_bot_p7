@@ -32,9 +32,9 @@ class AnswerManager:
             return self.select_answer(say['find'])
 
 
-    def check_storyteller(self, storyteller):
+    def check_storyteller(self, location):
         """docstring"""
-        if storyteller == [None, None]:
+        if location == [None, None]:
             return self.select_answer(say['not_tell'])
         else:
             return self.select_answer(say['tell'])
@@ -42,4 +42,3 @@ class AnswerManager:
 
 if __name__ == "__main__":
     grandpy = AnswerManager()
-    grandpy.check_query('')
